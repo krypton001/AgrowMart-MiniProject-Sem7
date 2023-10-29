@@ -12,7 +12,7 @@ export default function CategorySection() {
   const navigate = useNavigate();
 
   const handleClick = (category) => {
-    navigate(`/category/${category}`,{state:{name:category}});
+    navigate(`/category/${category}`);
   };
 
   return (

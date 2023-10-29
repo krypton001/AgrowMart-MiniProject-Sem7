@@ -35,7 +35,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/category/fruits`,{state:{name:'fruits'}});
+    navigate(`/category/fruits`);
   };
   
   return (

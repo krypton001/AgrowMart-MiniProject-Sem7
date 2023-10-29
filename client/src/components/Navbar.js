@@ -71,7 +71,7 @@ export default function Navbar({user}) {
                   className={
                     "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
                   }
-                  to="/marketplace"
+                  to="/category/fruits"
                   onClick={() => setNavbarOpen(!navbarOpen)}
                 >
                   Marketplace

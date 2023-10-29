@@ -76,9 +76,8 @@ export default function CategoryPage() {
   const [query, setQuery] = useState("");
 
   const location = useLocation();
-  const categoryName = location.state.name;
-  const displayCategoryName =
-    location.state.name.charAt(0).toUpperCase() + location.state.name.slice(1);
+  const categoryName = location.pathname.slice(10);
+  const displayCategoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
   const Categoryoptions = [
     "Fruits",
