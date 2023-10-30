@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import temp from "../img/temp/profuser 2.png";
 
-export default function Navbar({user}) {
+export default function Navbar({ user }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   const ref = useRef();
@@ -66,6 +66,8 @@ export default function Navbar({user}) {
                   About
                 </Link>
               </li>
+              {user.role==="shopper" && 
+              <>
               <li className="nav-item">
                 <Link
                   className={
@@ -80,61 +82,89 @@ export default function Navbar({user}) {
               <li className="nav-item">
                 <Link
                   className={
-                "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 bg-[#BD966D] text-white rounded-md"
+                    "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
+                  }
+                  to="/orders"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  Track Orders
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 flex items-center text-xl font-semibold leading-snug text-red-500 hover:opacity-75"
+                  }
+                  to="/favourites"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 flex items-center text-xl font-semibold leading-snug text-[#636363] hover:opacity-75"
+                  }
+                  to="/cart"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </Link>
+              </li>
+              </>
+              }
+              {user.role==="farmer" && <>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
+                  }
+                  to="/processorders"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  Process Orders
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 border-2 border-[#BD966D] text-[#BD966D] rounded-md"
                   }
                   to="/sell"
                   onClick={() => setNavbarOpen(!navbarOpen)}
                 >
-                  Start Selling
+                  Sell
                 </Link>
               </li>
-              {user ? (
-                <>
-                <li className="nav-item">
-                  <Link
-                    className={
-                      "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
-                    }
-                    to="/profile"
-                    onClick={() => setNavbarOpen(!navbarOpen)}
-                  >
-                    {" "}
-                    <img
-                    //TODO: change src to user profile pic
-                      src={temp}
-                      className="w-11 h-11 rounded-full hidden lg:block"
-                      alt="profile"
-                    />
-                  </Link>
-                </li>
-                <li className="nav-item">
+              <li className="nav-item">
                 <Link
-                  className="px-3 py-2 flex items-center text-lg font-semibold leading-snug text-[#2f2e41] hover:opacity-75"
-                  to="/"
-                  // onClick={handleLogout}
+                  className={
+                    "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 bg-[#BD966D] text-white rounded-md"
+                  }
+                  to="/soiltesting"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
                 >
-                  <i className="fa-solid fa-right-from-bracket text-2xl hidden lg:block "></i>
-                  <span className="text-left block lg:hidden">Logout</span>
+                  Soil Testing
                 </Link>
               </li>
-              </>
-              ) : (
-                <>
-                <li className="nav-item">
-                  <Link
-                    className={
-                      "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 bg-[#3B8056] text-white rounded-md"
-                    }
-                    to="/signup"
-                    onClick={() => setNavbarOpen(!navbarOpen)}
-                  >
-                    Signup
-                  </Link>
-                </li>
+              </>}
+              {!user && <>
                 <li className="nav-item">
                 <Link
                   className={
-                "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 border-2 border-[#3B8056] text-[#3B8056] rounded-md"
+                    "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 bg-[#3B8056] text-white rounded-md"
+                  }
+                  to="/signup"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  Signup
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 py-2 px-6 flex items-center text-sm font-semibold leading-snug hover:opacity-75 border-2 border-[#3B8056] text-[#3B8056] rounded-md"
                   }
                   to="/login"
                   onClick={() => setNavbarOpen(!navbarOpen)}
@@ -142,8 +172,24 @@ export default function Navbar({user}) {
                   Login
                 </Link>
               </li>
-              </>
-              )}
+              </>}
+              <li className="nav-item">
+                <Link
+                  className={
+                    "mx-6 my-2 flex items-center text-sm font-semibold leading-snug text-[#636363] hover:opacity-75"
+                  }
+                  to="/profile"
+                  onClick={() => setNavbarOpen(!navbarOpen)}
+                >
+                  <img
+                    //TODO: change src to user profile pic
+                    src={temp}
+                    className="w-11 h-11 rounded-full hidden lg:block"
+                    alt="profile"
+                  />
+                </Link>
+              </li>
+              
             </ul>
           </div>
         </div>
