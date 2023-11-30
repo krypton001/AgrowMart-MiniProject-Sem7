@@ -35,7 +35,7 @@ async function login(req, res) {
 }
 
 async function signup(req, res) {
-  const { email, password, name, role } = req.body;
+  const { email, password, name, role, phone_number } = req.body;
 
   if (!email || !password || !role) {
     res.status(409).send("Missing email, role or password");
@@ -54,6 +54,7 @@ async function signup(req, res) {
       name: name,
       password: hashed_password,
       role: role,
+      phone_number: phone_number,
     });
     1;
 
