@@ -50,19 +50,19 @@ async function signup(req, res) {
       return res.status(409).send("User already exists, Please Login");
     }
     const newUser = new User({
-      user_id: generatedUserId,
       email: sanitizedEmail,
       name: name,
       password: hashed_password,
       role: role,
     });
+    1;
 
     const insertedUser = await newUser.save();
 
     const token = jwt.sign({ user_id: generatedUserId }, process.env.JWT_KEY, {
       expiresIn: "8d",
     });
-    res.status(201).json({ token, userId: generatedUserId });
+    res.status(201).json({ token, userId: insertedUser._id });
   } catch (e) {
     console.log(e);
     res.status(409).send(e.message);
