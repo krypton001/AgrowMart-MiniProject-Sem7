@@ -26,7 +26,7 @@ disease_model.eval()
 
 
 app = Flask(__name__, static_folder='./build', static_url_path='/')
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/")
 def home():
