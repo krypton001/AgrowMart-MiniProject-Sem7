@@ -60,7 +60,6 @@ def weather_fetch(city_name):
     else:
         return None
 
-
 # Doing the actual crop prediction
 @app.route('/crop-predict', methods=['POST'])
 def crop_prediction():
@@ -87,6 +86,7 @@ def predict_image(img, model=disease_model):
     :param img: Image in bytes.
     :return: Prediction (string).
     """
+    print('3')
     transform = transforms.Compose([
         transforms.Resize(256),
         transforms.ToTensor(),
@@ -109,8 +109,11 @@ def predict_image(img, model=disease_model):
 @app.route('/disease-predict', methods=['POST'])
 def disease_prediction():
     # Check if the post request has the file part
+    print('1')
     if 'file' not in request.files:
         return jsonify({'error': 'No file part in the request'}), 400
+    print('2')
+    
     file = request.files['file']
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
