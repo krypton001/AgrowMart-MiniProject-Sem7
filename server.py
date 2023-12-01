@@ -18,6 +18,7 @@ import torch
 from torchvision import transforms
 import numpy as np
 
+
 # Loading the ML model
 disease_model_path = 'models/plant_disease_model.pth'
 disease_model = ResNet9(3, len(disease_classes))
@@ -28,10 +29,17 @@ disease_model.eval()
 app = Flask(__name__, static_folder='./build', static_url_path='/')
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+# Enable CORS for all routes
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+    return response
+
 @app.route("/")
 def home():
     return {"message": "Hello from backend"}
-
 
 # Loading crop recommendation model
 crop_recommendation_model_path = 'models/RandomForest.pkl'
