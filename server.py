@@ -25,7 +25,7 @@ disease_model.load_state_dict(torch.load(disease_model_path, map_location=torch.
 disease_model.eval()
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./build', static_url_path='/')
 CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 @app.route("/")
@@ -157,4 +157,4 @@ def fert_recommend():
     return jsonify({'recommendation': response})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
