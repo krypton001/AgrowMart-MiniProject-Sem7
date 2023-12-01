@@ -8,4 +8,4 @@ torch
 pandas
 numpy
 torchvision
-sklearn
+scikit-learn
