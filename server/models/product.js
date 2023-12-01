@@ -16,13 +16,17 @@ const productSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  quantity_type: {
+    type: Number,
+    required: true,
+  },
   farmer_id: {
     type: String,
     required: true,
   },
   rating: {
     type: Number,
-    default: 4.5,
+    default: 0,
   },
   number_of_ratings: {
     type: Number,
@@ -32,9 +36,10 @@ const productSchema = mongoose.Schema({
     type: String,
   },
   reviews: {
-    type: [Number],
+    type: [String],
     default: [],
   },
+  date: Date,
 });
 
 module.exports = mongoose.model("Product", productSchema);

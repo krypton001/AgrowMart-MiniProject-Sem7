@@ -6,5 +6,6 @@ const categories = [
   "livestock",
   "seeds",
 ];
+const quantity_type = ["kg", "gram", "ml", "piece", "dozen", "litre"];
 
-module.exports = { categories };
+module.exports = { categories, quantity_type };
